@@ -1,0 +1,79 @@
+import javax.swing.*;
+import java.util.*;
+import java.time.*;
+import java.time.LocalTime;
+import java.util.Timer;
+import java.util.TimerTask;
+public class Traffic_Light_System {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("You Are Very WELCOME in PahalGam City. Enjoy Your Day and Please Follow The Traffic Light System !");
+
+//        Current Time :-
+        LocalTime TimeRightNow = LocalTime.now();
+
+        int Hours = TimeRightNow.getHour();
+        int Minutes = TimeRightNow.getMinute();
+        int Seconds = TimeRightNow.getSecond();
+        System.out.println("Time Right Now :- " + Hours + " Hours " + Minutes + " Minutes " + Seconds + " Seconds ");
+//        Traffic of motor vehicle in city
+//        Traffic Of Heavy Motor Vehicles In the City {
+        Random HeavyMotorVehicles = new Random();
+
+        int HeavyMotorVehiclePercentage = HeavyMotorVehicles.nextInt(100);
+        System.out.println("Heavy Motor Vehicles Percentage On Road :- " + HeavyMotorVehiclePercentage);
+//    }
+//        Traffic Of Public Motor Vehicles In the City {
+        Random PublicMotorVehicles = new Random();
+
+        int PublicMotorVehiclePercentage = PublicMotorVehicles.nextInt(100);
+        System.out.println("Public Motor Vehicles Percentage On Road :- " + PublicMotorVehiclePercentage);
+//    }
+//        Crows On Road
+        Random Crowd = new Random();
+
+        int CrowdPercentage = Crowd.nextInt(100);
+        System.out.println("Crowd Percentage On Road :- " + CrowdPercentage);
+
+//        Creating A Timer
+//        (Here Setting Up Time Period For People Motor Vehicles. In Remaining  Rest of the time Truck and Big Motor Vehicles will be released on road)
+        if(Hours >=5 || Hours <= 22 ){
+        Timer TimeRN = new Timer();
+
+        String[] trafficLightColors = {"Red", "Green", "Yellow"};
+
+        int[] index = {0};
+
+        TimeRN.scheduleAtFixedRate(new TimerTask() {
+
+            public void run(){
+
+                String currentColor = trafficLightColors[index[0]];
+                System.out.println("Traffic Light is now " + currentColor);
+                // Increment the index and loop back to 0 if it exceeds the array length
+                index[0] = (index[0] + 1) % trafficLightColors.length;
+
+            }
+        },0,10000);
+        }
+        else{
+            Timer TimeRN = new Timer();
+
+            String[] trafficLightColors = {"Red", "Green", "Yellow"};
+
+            int[] index = {0};
+
+            TimeRN.scheduleAtFixedRate(new TimerTask() {
+
+                public void run(){
+
+                    String currentColor = trafficLightColors[index[0]];
+                    System.out.println("Traffic Light is now " + currentColor);
+                    // Increment the index and loop back to 0 if it exceeds the array length
+                    index[0] = (index[0] + 1) % trafficLightColors.length;
+
+                }
+            },0,5000);
+        }
+    }
+}
